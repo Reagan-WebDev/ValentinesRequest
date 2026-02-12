@@ -2,6 +2,8 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const popup = document.getElementById("popup");
 const closePopup = document.getElementById("closePopup");
+const loveMusic = document.getElementById("loveMusic");
+
 
 // Make NO button run away 😈
 noBtn.addEventListener("mouseover", () => {
@@ -14,9 +16,45 @@ noBtn.addEventListener("mouseover", () => {
 // YES button action 💚
 yesBtn.addEventListener("click", () => {
     popup.classList.add("show");
+    loveMusic.play();
 });
 
 // Close popup
 closePopup.addEventListener("click", () => {
     popup.classList.remove("show");
+    loveMusic.pause();
+    loveMusic.currentTime = 0;
 });
+
+const heartsContainer = document.querySelector(".hearts");
+
+function createHeart(isPopup = false) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (isPopup ? 3 : 6) + Math.random() * 3 + "s";
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
+
+// Hearts on main page
+setInterval(() => createHeart(false), 600);
+
+// More hearts when popup shows (flying video effect)
+yesBtn.addEventListener("click", () => {
+    popup.classList.add("show");
+
+    popupHeartInterval = setInterval(() => createHeart(true), 200);
+});
+
+closePopup.addEventListener("click", () => {
+    popup.classList.remove("show");
+    clearInterval(popupHeartInterval);
+});
+

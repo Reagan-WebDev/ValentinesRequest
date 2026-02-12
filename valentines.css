@@ -128,3 +128,36 @@ button {
     border: none;
     cursor: pointer;
 }
+
+/* FLOATING HEARTS */
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(0.8);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-120vh) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* POPUP HEARTS — MORE INTENSE (VIDEO-LIKE) */
+.popup.show .heart {
+    animation-duration: 4s !important;
+    font-size: 26px;
+}
