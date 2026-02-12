@@ -92,6 +92,7 @@ button {
 .popup-content {
     position: relative;
     padding: 30px 35px;
+    padding-top: 150px;   /* pushes everything down */
     border-radius: 20px;
     text-align: center;
     width: 320px;
@@ -110,13 +111,9 @@ button {
 
 /* Dark overlay for readability */
 .popup-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.6);  /* darker overlay */
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    z-index: 0;
 }
 
 
@@ -134,10 +131,23 @@ button {
 }
 
 .popup-content p {
-    color: #ffffff;   /* pure white for clarity */
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    font-weight: 600;
     font-size: 1rem;
     line-height: 1.6;
+
+    /* GLASS BACKGROUND */
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    padding: 15px 18px;
+    border-radius: 15px;
+
+    /* Extra clarity */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+
+    margin: 20px 0 25px;
 }
 
 
@@ -212,3 +222,10 @@ button {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* Hide main content when popup is active */
+.container.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}

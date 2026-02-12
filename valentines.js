@@ -3,6 +3,8 @@ const yesBtn = document.getElementById("yesBtn");
 const popup = document.getElementById("popup");
 const closePopup = document.getElementById("closePopup");
 const loveMusic = document.getElementById("loveMusic");
+const mainContainer = document.querySelector(".container");
+
 
 
 // Make NO button run away 😈
@@ -16,15 +18,21 @@ noBtn.addEventListener("mouseover", () => {
 // YES button action 💚
 yesBtn.addEventListener("click", () => {
     popup.classList.add("show");
+    mainContainer.classList.add("hide");
     loveMusic.play();
 });
+
+
 
 // Close popup
 closePopup.addEventListener("click", () => {
     popup.classList.remove("show");
+    mainContainer.classList.remove("hide");
+
     loveMusic.pause();
     loveMusic.currentTime = 0;
 });
+
 
 const heartsContainer = document.querySelector(".hearts");
 
