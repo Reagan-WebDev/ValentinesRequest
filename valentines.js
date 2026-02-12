@@ -58,3 +58,27 @@ closePopup.addEventListener("click", () => {
     clearInterval(popupHeartInterval);
 });
 
+const isMobile = window.innerWidth <= 768;
+let noBtnTimeout;
+
+// Desktop behavior (run away)
+if (!isMobile) {
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 200 - 100;
+
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+}
+
+// Mobile behavior (disappear 😈)
+if (isMobile) {
+    noBtn.addEventListener("touchstart", () => {
+        noBtn.classList.add("hide");
+
+        clearTimeout(noBtnTimeout);
+        noBtnTimeout = setTimeout(() => {
+            noBtn.classList.remove("hide");
+        }, 1500); // reappears after she stops trying
+    });
+}
